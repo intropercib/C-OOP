@@ -4,8 +4,8 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 
 # Table of Contents
 
-- [Introduction](#introduction)
-- [Programs]()
+1. [Introduction](#introduction)
+2. [Programs]()
     - [Hello world](#01-hello-world)
     - [BMI Calculator](#02-bmi-calculator)
     - [Simple Calculator](#03-simple-calculator)
