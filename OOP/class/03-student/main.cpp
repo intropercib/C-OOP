@@ -28,7 +28,7 @@ class Student
     }
     public : void result(){
         cout << "___________________________________RESULT______________________________________\n" << endl;
-        cout << "Name :: " << fname << " " << lname << "\nRoll no :: "<< rollno << "\nTotal :: " << total << "\nPercentage :: " << percent << "% "<<"\nReport ::" << report << endl; 
+        cout << "Name :: " << fname << " " << lname << "\nRoll no :: "<< rollno << "\nTotal :: " << total << "\nPercentage :: " << percent << "% "<<"\nReport :: " << report << endl; 
     }
     
     
@@ -42,7 +42,7 @@ int main()
 
     Student s1; 
     string fname, lname, roll;
-    string sub[] = {"MATHEMATICS", "MICROPROCESSOR", "OOP", "ECM", "CHEMISTRY", };
+    string sub[] = {"MATHEMATICS", "MICROPROCESSOR", "OOP", "ECM", "CHEMISTRY"};
     int i;
     float *marks = new float[5];
 
