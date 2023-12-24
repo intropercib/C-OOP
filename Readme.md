@@ -7,7 +7,7 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 # Table of Contents
 
 1. [Introduction](#introduction)
-2. [Programs]()
+2. [Basic Programs]()
     - [Hello world](#01-hello-world)
     - [BMI Calculator](#02-bmi-calculator)
     - [Simple Calculator](#03-simple-calculator)
@@ -19,6 +19,12 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
     - [Dynamic Memory Allocation](#09-dynamic-memory-allocation)
     - [DMA Array](#10-dma-array)
     - [DMA Structure](#11-dma-structure)
+3. [Object Oriented Programming]()
+    - [Class Structure](#1-class-structure)
+    - [Basic Calculator](#2-basic-calculator)
+    - [Student Report](#3-student-report)
+    - [Function Scope](#4-function-scope)
+    - [Getter Setter](#5-getter-setter)
 
 
 # Introduction
@@ -421,7 +427,7 @@ int main(){
     cout << "Enter name :: ";
     cin  >> p1 -> name;
     cout << "Enter age :: ";
-    cin  >> p1 -> age;
+    cin  >> p1 -> age;s
     cout << "Enter gender :: ";
     cin  >> p1 -> gender;
 
@@ -430,6 +436,250 @@ int main(){
 
     delete p1;
     return 0;
+}
+```
+
+# Object Oriented Programming
+
+## Class
+
+## 01. Class Setup
+This give a insight on the structure of class in c++ programming.Implicitly the class method along with the class attribute are private. If we want to access those then we have to make it explicitly public. The function becomes inline on where called.
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class person{
+    private :string name = "Im private";
+    public :string pname;
+            int page;
+    private : void priv_func(){
+        cout << "this function actual does nothing in this program. It is an example to show this is not accessible to the other classes or function.";
+    }
+    public : void priv_name(){
+        cout << name << endl;
+    }
+            void setter(string name, int age){
+                pname = name;
+                page = age;
+            }
+            void show(){
+                cout << pname << " " << page ;
+            }
+
+};
+
+int main(){
+
+    person p;
+    p.priv_name();
+    p.setter( "hello", 12);
+    p.show();
+
+    return 0;
+
+}
+```
+
+## 02.Basic Calculator
+This program shows the applicable use of class method and attributes.
+```cpp
+#include <iostream>
+using namespace std;
+
+class calculator{
+
+    float result;
+
+    public: void add(float num1, float num2){
+        result = num1 + num2 ;
+    }
+    public: void sub(float num1, float num2){
+        result = num1 - num2 ;
+    }
+    public: void mul(float num1, float num2){
+        result = num1 * num2 ;
+    }
+    public: void div(float num1, float num2){
+        result = num1 / num2 ;
+    }
+    public : float show(){
+        return result;
+    }
+
+};
+
+int main(){
+    calculator calc;
+    float operand1, operand2 ,result;
+    char operat;
+    cout << "_______________________CALCULATOR______________________"<< endl;
+    while(true){
+        cin  >> operand1 >> operat >> operand2;
+        switch (operat) {
+            case '+':
+                calc.add(operand1, operand2);
+                break;
+            case '-':
+                calc.sub(operand1, operand2);
+                break;
+            case '*':
+                calc.mul(operand1, operand2);
+                break;
+            case '/':
+                calc.div(operand1, operand2);
+                break;
+            default:
+                cout << "Invalid operator";
+                break;      
+        }
+        result = calc.show();
+        cout << result << endl;
+    }
+
+    return 0;
+}
+```
+
+## 03. Student Report
+In this program we take the user input and pass those value to our defined class. On the basis of method defined on class is used to calculate the logical part of the program.
+```cpp
+
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+class Student
+{   int count = 0;
+    float total, percent;
+    string report;
+    string fname, lname, rollno; 
+    
+
+    public : int getter(string First_name, string Last_name, string roll){
+        fname = First_name;
+        lname = Last_name;
+        rollno = roll;
+    }
+    public : int setncal(float marks[]){
+         for (int i = 0; i < 5; i++) {
+            total += marks[i];
+            if (marks[i] < 32)
+                count ++;
+        }
+        (count == 0)? report ="PASS \nCONGRATULAtION " : report = "Fail \nBETTER LUCK NEXT TIME";
+        percent = (float(total) / 500.0) * 100; 
+    }
+    public : void result(){
+        cout << "___________________________________RESULT______________________________________\n" << endl;
+        cout << "Name :: " << fname << " " << lname << "\nRoll no :: "<< rollno << "\nTotal :: " << total << "\nPercentage :: " << percent << "% "<<"\nReport :: " << report << endl; 
+    }
+    
+    
+
+
+};
+
+int main()
+    
+{ 
+
+    Student s1; 
+    string fname, lname, roll;
+    string sub[] = {"MATHEMATICS", "MICROPROCESSOR", "OOP", "ECM", "CHEMISTRY"};
+    int i;
+    float *marks = new float[5];
+
+    cout << "_________________________________Student Detail___________________________________\n"<< endl;
+    cout << "Fisrt Name :: ";
+    cin >> fname;
+    cout << "Last Name :: ";
+    cin >> lname;
+    cout << "Roll No :: ";
+    cin >> roll;
+    s1.getter(fname, lname, roll);
+
+
+    for (int i = 0; i < 5; i++)
+    {
+        do
+        {
+            cout << "Marks obtained in " << sub[i] << " :: ";
+            cin >> marks[i];
+
+            if (marks[i] < 0 || marks[i] > 100)
+            {
+                cout << "Invalid marks!" << endl;
+            }
+        } while (marks[i] < 0 || marks[i] > 100);
+    }
+    s1.setncal(marks);
+    s1.result();
+
+    return 0;
+}
+```
+
+## 04. Function Scope
+A write function for a class can be defined outside the class as a global function using the scope resolution operator (::). This operator allows the function to access the members of the class without being a member itself.
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class display{
+
+    public : void show(){
+        cout << "Hello World" << endl;
+
+    }
+    public : void wish();
+};
+
+void display :: wish(){
+    cout << "Merry Christmas." << endl;
+};
+
+int main(){
+
+    display d;
+    d.show();
+    d.wish();
+
+    return 0;
+}
+```
+## 05. Getter Setter
+It gives the concept of encapsulation in c++.
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class GetSet{
+
+    int val = 0 ;
+
+    GetSet(){
+        cout << "Value ::" << val << endl;
+    }
+    public :void  get(){
+        cout << "Value ::" << val;
+    }
+    public :void  set(int value){
+        val = value;
+    }
+};
+
+int main(){
+    GetSet a;
+
+    a.set(12);
+    a.get();
 }
 ```
 
