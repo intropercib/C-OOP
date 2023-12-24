@@ -626,6 +626,7 @@ int main()
 
 ## 04. Function Scope
 A write function for a class can be defined outside the class as a global function using the scope resolution operator (::). This operator allows the function to access the members of the class without being a member itself.
+
 ```cpp
 #include <iostream>
 
@@ -655,12 +656,18 @@ int main(){
 ```
 ## 05. Getter Setter
 It gives the concept of encapsulation in c++.
- - Destructor
-    To deallocate the memory of object. On the completion of function execution this set gets executed. Since the onject is stored in stack, the last objects gets destroyed first
-    ```cpp
-    ~classname(){
-        // to be executed on deletion of object
-    }```
+  ### Destructor
+To deallocate the memory of object the destructor is used. Just like any other block of funtion it is also a function the only difference is it the loggic inside that function is destroy the object created. On the completion of function execution this set gets executed. Since the object is stored in stack, the last objects gets destroyed first. The object created don't gets destroyed implicitly.
+
+```cpp
+~(classname or constructor)(){
+// to be executed on deletion of object
+// not compulsory to destry the object created
+}
+```
+
+Example : 
+
 ```cpp
 #include <iostream>
 
