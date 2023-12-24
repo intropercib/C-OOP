@@ -655,6 +655,12 @@ int main(){
 ```
 ## 05. Getter Setter
 It gives the concept of encapsulation in c++.
+ - Destructor
+    To deallocate the memory of object. On the completion of function execution this set gets executed. Since the onject is stored in stack, the last objects gets destroyed first
+    ```cpp
+    ~classname(){
+        // to be executed on deletion of object
+    }```
 ```cpp
 #include <iostream>
 
