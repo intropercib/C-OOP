@@ -29,10 +29,16 @@ public:
         cout << "Name ::" << name << endl;
         cout << "Age ::" << age << endl;
     }
+    ~Person(){
+        
+    }
 };
 
 int main()
 {
+
+    Person *ptr = new Person();  // creating nameless object
+
     Person p1, p2("hello", 12), p3[3];
     Person *ptr = &p1;
     string name;
@@ -50,9 +56,9 @@ int main()
         cin >> age;
         ptr->setvalue(name, age);
         ptr->show();
-        // ~Person() {
-
-        // }
+        delete ptr;
+        
     }
+
     return 0;
 }
