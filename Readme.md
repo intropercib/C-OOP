@@ -1,4 +1,4 @@
-# Learn C++ Programming <span style="position :absolute ; margin-left:3%;bottom:4%;"><img src="https://isocpp.org/assets/images/cpp_logo.png" alt="logo" width="52px" height="52px"></span>
+# Learn C++ Programming <span style="position :absolute ; margin-left:3%;bottom:4%; scroll-behaviour :smooth "><img src="https://isocpp.org/assets/images/cpp_logo.png" alt="logo" width="52px" height="52px"></span>
 
 
 
@@ -6,30 +6,32 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 
 # Table of Contents
 
-1. [Introduction](#introduction)
-2. [Basic Programs]()
-    - [Hello world](#01-hello-world)
-    - [BMI Calculator](#02-bmi-calculator)
-    - [Simple Calculator](#03-simple-calculator)
-    - [Simple and compound interest](#04-simple-and-compound-interest)
-    - [Temperature Conversion](#05-temperature-conversion)
-    - [Function Overloading](#06-function-overloading)
-    - [Dynamic Area](#07-dynamic-area)
-    - [Pass by Reference](#08-pass-by-reference)
-    - [Dynamic Memory Allocation](#09-dynamic-memory-allocation)
-    - [DMA Array](#10-dma-array)
-    - [DMA Structure](#11-dma-structure)
-3. [Object Oriented Programming]()
-    - [Class Structure](#01-class-setup)
-    - [Basic Calculator](#02basic-calculator)
-    - [Student Report](#03-student-report)
-    - [Function Scope](#04-function-scope)
-    - [Getter Setter](#05-getter-setter)
-    - [Constructor](#06-constructor)
-    - [Pointer object](#07-pointer-object)
-    - [Scope of variable](#08-scope-of-variable)
-    - [Static variable and function](#09-static-variable-and-function)
-    - [Student report](#10-student-report)
+## 1. [Introduction](#introduction)
+## 2. [Basic Programs](#basic-programs)
+- [Hello world](#01-hello-world)
+- [BMI Calculator](#02-bmi-calculator)
+- [Simple Calculator](#03-simple-calculator)
+- [Simple and compound interest](#04-simple-and-compound-interest)
+- [Temperature Conversion](#05-temperature-conversion)
+- [Function Overloading](#06-function-overloading)
+- [Dynamic Area](#07-dynamic-area)
+- [Pass by Reference](#08-pass-by-reference)
+- [Dynamic Memory Allocation](#09-dynamic-memory-allocation)
+- [DMA Array](#10-dma-array)
+- [DMA Structure](#11-dma-structure)
+
+## 3. [Object Oriented Programming](#object-oriented-programming)
+### [Class](#class)
+- [Class Structure](#01-class-setup)
+- [Basic Calculator](#02basic-calculator)
+- [Student Report](#03-student-report)
+- [Function Scope](#04-function-scope)
+- [Getter Setter](#05-getter-setter)
+- [Constructor](#06-constructor)
+- [Pointer object](#07-pointer-object)
+- [Scope of variable](#08-scope-of-variable)
+- [Static variable and function](#09-static-variable-and-function)
+- [Student report](#10-student-report)
 
 
 # Introduction
@@ -37,6 +39,8 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 C++ is a powerful and versatile programming language widely used in software development. Whether you're a beginner or an experienced programmer, this repository aims to provide a comprehensive guide to learning C++.
 
 # Getting Started
+
+## Basic Programs
 
 ## 01. Hello World
 Understanding the structure of a complete program in c++.
