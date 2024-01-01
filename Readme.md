@@ -25,6 +25,10 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
     - [Student Report](#3-student-report)
     - [Function Scope](#4-function-scope)
     - [Getter Setter](#5-getter-setter)
+    - [Constructor](#06-constructor)
+    - [Pointer object](#07-pointer-object)
+    - [Scope of variable](#08-scope-of-variable)
+    - [Static Variable and function](#09-)
 
 
 # Introduction
@@ -696,9 +700,222 @@ int main(){
 }
 ```
 
+## 06. Constructor
+```cpp
+#include <iostream>
 
+using namespace std;
 
+class dist
+{
+    float inch, feet;
 
+public:
+    dist()
+    {
+        feet = inch = 0;
+        // default constructor
+    }
+    dist(float ft, float in) : feet(ft), inch(in)
+    {
+    }
+    dist(dist &d);
+    void add(dist);
+    void add(dist, dist);
+    void show()
+    {
+        cout << feet << "::" << inch << endl;
+    }
+    friend void add(dist, dist);
+};
+
+dist::dist(dist &d)
+{
+    feet = d.feet;
+    inch = d.inch;
+}
+void dist::add(dist d)
+{
+    feet += d.feet;
+    inch += d.inch;
+    // without return type
+}
+void dist::add(dist x, dist y)
+{
+    feet = x.feet + y.feet;
+    inch = x.inch + y.inch;
+}
+void add(dist x, dist y){
+    float feet = x.feet + y.feet;
+    float inch = x.inch + y.inch;
+    cout << feet <<":" << inch << endl;
+}
+int main()
+{
+    dist d1(2, 3), d2(3, 4), d3;
+    d1.show();
+    d2.show();
+    cout << "______________" << endl;
+    d1.add(d2);
+    d1.show();
+    cout << "______________" << endl;
+    d3.show();
+    cout << "______________" << endl;
+    cout << "______________" << endl;
+    d1.show();
+    d2.show();
+    cout << "______________" << endl;
+    d3.add(d1, d2);
+    d3.show();
+    cout << "______________" << endl;
+    cout << "______________" << endl;
+    d1.show();
+    d2.show();
+    cout << "______________" << endl;
+    add(d1, d2);
+
+    return 0;
+}
+```
+
+## 07. Pointer Object
+```cpp 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Person
+{
+
+    string name;
+    int age;
+
+public:
+    Person()
+    {
+        name = "";
+        age = 0;
+    }
+    Person(string fname, int getage) : name(fname), age(getage)
+    {
+    }
+
+    void setvalue(string fname, int getage)
+    {
+        name = fname;
+        age = getage;
+    }
+    void show()
+    {
+        cout << "Name ::" << name << endl;
+        cout << "Age ::" << age << endl;
+    }
+    ~Person(){
+        
+    }
+};
+
+int main()
+{
+
+    Person *ptr = new Person();  // creating nameless object
+
+    Person p1, p2("hello", 12), p3[3];
+    Person *ptr = &p1;
+    string name;
+    int age;
+    ptr->show();
+    ptr = &p2;
+    ptr->show();
+    ptr->setvalue("hello", 122);
+    ptr = &p3[3];
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "Name::";
+        cin >> name;
+        cout << "Age::";
+        cin >> age;
+        ptr->setvalue(name, age);
+        ptr->show();
+        delete ptr;
+        
+    }
+
+    return 0;
+}
+```
+
+## 08. Scope of Variable
+The scope of variable x is local and variable y is global. Keyword static help to define variable globally. So, variable y is not destroyed until the entire program terminates. Similarly variable x destroys as soon as the function "display" terminates.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int display(){
+    int x = 0;
+    static int y = 0;
+    x++;
+    y++;
+    cout << "X :: " << x << "\tY :: " << y << endl;
+}
+
+int main(){
+    display();
+    display();
+    display();
+    display();
+    display();
+
+    return 0;
+}
+```
+## 09. Static variable and function
+For declaration of static variable in class
+```cpp
+class classname{
+    static int var_name; // declare the static variable inside the class
+};
+```
+For initialization of variable
+```cpp
+int classname :: var_name; // initialize the static variable outside the class
+```
+It's better practice to make a static function to access the static variable. The static function belongs to only class and no object is required. Scope of static variable is local but the life span is global.
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Happy{
+
+    public : void fun1(){
+        cout << "function 1" << endl;
+        count ++;
+    }
+    public : void fun2(){
+        cout << "function 2" << endl;
+        count ++;
+    }
+    static void show_count(){
+        cout << count << endl ;
+    }
+    static int count;
+    
+};
+int Happy :: count = 0;
+
+int main(){
+    Happy h1;
+    h1.fun1();
+    h1.fun2();
+    h1.show_count(); // not appropriate
+    Happy::show_count();  //appropriate
+    return 0;
+}
+```
 
 
 
