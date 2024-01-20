@@ -1,7 +1,3 @@
-/*
-Create a class named complex that represent the complex number in format "a+ib",
-now overload the comparison operator ">" to find the largest of two complex number and display their angle and magnitude.
-*/
 #include <iostream>
 #include <cmath>
 using namespace std;
