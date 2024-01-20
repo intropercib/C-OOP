@@ -33,6 +33,10 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 - [Static variable and function](#09-static-variable-and-function)
 - [Student report](#10-student-report)
 - [More on constructor destructor and 'this' operator](#11-more-on-constructor-destructor-and-this-operator)
+- [Operator overloading](#12-operator-overloading)
+- [Assignment operator oveloading](#13-assignment-operator-overloading)
+- [Comparator operator overloading](#14-comparing-operator-overloading)
+
 
 
 # Introduction
@@ -1127,10 +1131,323 @@ int main()
 }
 ```
 
+## 12. Operator Overloading
+Operator ovearloading is a way to redefine the built in fucntion to do specific task assigned by user.
 
+#### General syntax:
+```cpp
+    classConstructor functionName <bulidIn:operator>(parameters);
+```
 
+#### Function defined explicitly
+```cpp
+functionType classReference::functionName<buildIN:operator>(dataType variableName){
+    //code here
+}
+```
 
+For example in the given program, + operator adds two object of class named "Distance".
+The build in function of + operator (which is to add only two basic data types) was manipulated to add two operator. In this way, we can change the function of build in operators to do specific task.
 
+```cpp
+#include <iostream>
+#include <string>
 
+using namespace std;
 
+class Distance
+{
+    float inch, feet;
 
+public:
+    Distance() {}
+    Distance(float f, float i) : feet(f), inch(i)
+    {
+    }
+    void setValue(float f, float i){
+        feet = f;
+        inch = i;
+    }
+    void show(){
+        cout << "feet :" << feet << " " << "inch :" << inch << endl;
+    }
+    Distance operator +(Distance);
+};
+
+Distance Distance::operator+(Distance x){
+    float ft, in;
+    ft = this->feet + x.feet;
+    in = this->inch + x.inch;
+    return Distance(ft, in);
+}
+int main(){
+
+    Distance d1, d2(3,5), d3(6,9);
+    d1 = d2 + d3;
+    d1.show();
+    return 0;
+}
+```
+
+### Non-member function and friend function.
+
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Distance
+{
+    float inch, feet;
+
+public:
+    Distance() {}
+    Distance(float f, float i) : feet(f), inch(i)
+    {
+    }
+    void setValue(float f, float i){
+        feet = f;
+        inch = i;
+    }
+    void show(){
+        cout << "feet :" << feet << " " << "inch :" << inch << endl;
+    }
+    friend Distance operator +(Distance, Distance);
+};
+
+Distance operator +(Distance x, Distance y){
+    float ft, in;
+    ft = y.feet + x.feet;
+    in = y.inch + x.inch;
+    return Distance(ft, in);
+}
+```
+
+### Uniray operator overloading
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Time
+{
+    int sec, min, hr;
+
+public:
+    Time(int h, int m, int s)
+    {
+        sec = s;
+        min = m;
+        hr = h;
+    }
+    void setValue(int h, int m, int s)
+    {
+        sec = s;
+        min = m;
+        hr = h;
+    }
+    void show()
+    {
+        cout << hr << ":" << min << ":" << sec;
+    }
+
+    Time operator++()
+    {
+        ++sec;
+        ++min;
+        ++hr;
+        return Time(hr, min, sec);
+    };
+    Time operator++(int)
+    {
+        sec++;
+        min++;
+        hr++;
+        return Time(hr, min, sec);
+    };
+};
+
+int main()
+{
+    Time t1(2, 3, 4);
+    ++t1;
+    cout << "Pre increment:";
+    t1.show();
+    cout << endl;
+    t1++;
+    cout << "Post increment:";
+    t1.show();
+    cout << endl;
+    return 0;
+}
+```
+
+## 13. Assignment operator overloading
+The following programs gives you an insight on concatinating and copying the member of object dynamically.
+
+### Concatinating
+```cpp
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+class concat
+{
+    char *str;
+
+public:
+    concat()
+    {
+        str = new char[1];
+        str[0] = '\0';
+    }
+    concat(char *nam)
+    {
+        int len = strlen(nam);
+        str = new char[len + 1];
+        strcpy(str, nam);
+    }
+    void show()
+    {
+        cout << "name is: " << str << endl;
+    }
+    ~concat() {}
+    concat operator+(concat obj)
+    {
+        int len = strlen(obj.str) + strlen(this->str);
+        char *temp = new char[len + 1];
+        strcpy(temp, this->str);
+        strcat(temp, obj.str);
+        str = new char[len + 1];
+        strcpy(str, temp);
+        return *this;
+    }
+    // friend concat operator +(concat obj1, concat obj2){
+    //     int len = strlen(obj1.str) + strlen(obj2.str);
+    //     char *temp = new char[len + 1];
+    //     strcpy(temp, obj2.str);
+    //     strcat(temp,obj1.str);
+    //     obj2.str = new char[len + 1];
+    //     strcpy(obj2.str,temp);
+    //     return obj2;
+    // }
+};
+
+int main()
+{
+    concat person1("sita"), person2("ram"), person3;
+    person3 = person1 + person2;
+    person3.show();
+}
+```
+
+### Copying
+```cpp
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+class Name
+{
+    char *str;
+
+public:
+    Name()
+    {
+        str = new char[1];
+        str[0] = '\0';
+    }
+    Name(char *nam)
+    {
+        int len = strlen(nam);
+        str = new char[len + 1];
+        strcpy(str, nam);
+    }
+    ~Name()
+    {
+        delete[] str;
+    }
+    void show()
+    {
+        cout << str << endl;
+    }
+    Name operator=(Name);
+};
+Name Name ::operator=(Name obj)
+{
+    int len = strlen(obj.str);
+    str = new char[len + 1];
+    strcpy(str, obj.str);
+    return Name(str);
+}
+
+int main()
+{
+    Name person1("Hello");
+    person1.show();
+    Name person2;
+    person2 = person1;
+    person2.show();
+
+    return 0;
+}
+```
+
+## 14. Comparing operator overloading
+Overloading the comparetor operator for the determination of greater complex number.
+```cpp
+/*
+Create a class named complex that represent the complex number in format "a+ib",
+now overload the comparison operator ">" to find the largest of two complex number and display their angle and magnitude.
+*/
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Complex
+{
+private:
+    int real;
+    int imag;
+
+public:
+    Complex(int r, int i) : real(r), imag(i) {}
+    float magnitude()
+    {
+        return sqrt(pow(real, 2) + pow(imag, 2));
+    }
+    float angle()
+    {
+        return atan(imag / real);
+    }
+    bool operator>(Complex);
+};
+
+bool Complex ::operator>(Complex x)
+{
+    return this->magnitude() > x.magnitude();
+}
+
+int main()
+{
+
+    Complex complex1(1, 7), complex2(3, 4);
+
+    if (complex1 > complex2)
+    {
+        cout << "Complex number 1 is larger." << endl;
+        cout << "Angle is " << complex1.angle() << endl;
+        cout << "Magnitude is " << complex1.magnitude() << endl;
+    }
+    else
+    {
+        cout << "Complex number 2 is larger.";
+    }
+
+    return 0;
+}
+```
