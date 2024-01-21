@@ -1447,3 +1447,43 @@ int main()
     return 0;
 }
 ```
+
+## 15. Data conversion
+This code demonstrates how to define a class in C++ with a constructor and a conversion operator, and how to use these features to convert between different units of temperature.
+```cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+class Temp
+{
+	private: float fahrenheit;
+	public:Temp()
+	{
+		fahrenheit=0;
+	}
+	Temp(float celsius):fahrenheit(celsius)
+	{
+		fahrenheit=((celsius * static_cast<float>(9) / 5) + 32);
+	}
+	void show()
+	{
+		cout<<"The value of Temp in fahrenheit is "<<fahrenheit<<endl;
+		
+	}
+	operator float(){
+	
+	return (static_cast<float>(5)/9 )* (fahrenheit - 32);
+    }
+	~Temp(){
+	}
+};
+int main()
+{
+	float deg=49;
+	Temp tempf=deg; 
+	tempf.show();
+	float celsius=tempf;
+	cout<<"The value of Temp in celsius is " << celsius<<endl;
+	return 0;
+}
+```
