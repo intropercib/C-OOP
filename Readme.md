@@ -454,6 +454,110 @@ int main(){
 ```
 
 # Object Oriented Programming
+Object-Oriented Programming (OOP) is a programming paradigm that revolves around the concept of objects, encapsulation, inheritance, and polymorphism. Here are key features of OOP:
+
+### 01. Class
+A class is a blueprint for creating objects in object-oriented programming. It defines the properties (attributes) and behaviors (methods) that objects of the class will have. For example, a 'Car' class may have attributes like 'color' and 'model' and methods like 'start' and 'stop'.
+
+### 02. Object
+An object is an instance of a class. It represents a real-world entity and encapsulates data and functionality. For instance, an object of the 'Car' class could be a specific car with a particular color and model, capable of starting and stopping.
+
+### 03. Encapsulation
+Encapsulation is the bundling of data and methods that operate on that data within a class, restricting direct access from outside the class. It promotes data hiding, security, and modularity. For instance, private attributes of a BankAccount class can be encapsulated, allowing controlled access through methods like 'deposit' and 'withdraw'.
+
+### 04. Polymorphism
+Polymorphism allows objects of different classes to be treated as objects of a common base class. It enables flexibility and extensibility by supporting a single interface for different types. For example, both a 'Circle' and a 'Square' class may have a common method 'calculateArea', exhibiting polymorphic behavior.
+
+### 05. Inheritance
+Inheritance is a mechanism that allows a class to inherit properties and behaviors from another class. It promotes code reuse and the creation of class hierarchies. For instance, a 'Manager' class inheriting from an 'Employee' class can reuse common attributes and methods.
+
+### 06. Abstraction
+Abstraction involves simplifying complex systems by modeling classes based on essential features, ignoring unnecessary details. It provides a high-level view of objects and their interactions. For example, an 'Animal' class can be abstract, with subclasses like 'Dog' and 'Cat' providing specific implementations.
+
+Illustration of above mentioned concepts.
+```cpp
+#include <iostream>
+using namespace std;
+
+// Class and Object
+class Shape {
+public:
+    virtual void draw() {
+        cout << "Drawing a shape." << endl;
+    }
+};
+
+// Encapsulation
+class BankAccount {
+private:
+    double balance;
+
+public:
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+        } else {
+            cout << "Insufficient funds." << endl;
+        }
+    }
+};
+
+// Polymorphism
+class Circle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing a circle." << endl;
+    }
+};
+
+// Inheritance
+class Manager : public BankAccount {
+public:
+    void approveLoan(double amount) {
+        deposit(amount);  // Inherits deposit method from BankAccount
+        cout << "Loan approved." << endl;
+    }
+};
+
+// Abstraction
+class Animal {
+public:
+    virtual void makeSound() = 0;  // Pure virtual function for abstraction
+};
+
+class Dog : public Animal {
+public:
+    void makeSound() override {
+        cout << "Woof!" << endl;
+    }
+};
+
+int main() {
+    // Object
+    BankAccount account;
+    account.deposit(1000);
+    account.withdraw(500);
+
+    // Polymorphism
+    Shape* shape = new Circle();
+    shape->draw();
+
+    // Inheritance
+    Manager manager;
+    manager.approveLoan(1000);
+
+    // Abstraction
+    Animal* dog = new Dog();
+    dog->makeSound();
+
+    return 0;
+}
+```
+We will learn more on depth of each topic from basic to advance.
 
 ## Program
 
