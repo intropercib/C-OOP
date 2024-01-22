@@ -21,7 +21,7 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 - [DMA Structure](#11-dma-structure)
 
 ## 3. [Object Oriented Programming](#object-oriented-programming)
-### [Class](#class)
+### [Programs]()
 - [Class Structure](#01-class-setup)
 - [Basic Calculator](#02basic-calculator)
 - [Student Report](#03-student-report)
@@ -31,11 +31,11 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 - [Pointer object](#07-pointer-object)
 - [Scope of variable](#08-scope-of-variable)
 - [Static variable and function](#09-static-variable-and-function)
-- [Student report](#10-student-report)
-- [More on constructor destructor and 'this' operator](#11-more-on-constructor-destructor-and-this-operator)
-- [Operator overloading](#12-operator-overloading)
-- [Assignment operator oveloading](#13-assignment-operator-overloading)
-- [Comparator operator overloading](#14-comparing-operator-overloading)
+- [More on constructor destructor and 'this' operator](#10-more-on-constructor-destructor-and-this-operator)
+- [Operator overloading](#11-operator-overloading)
+- [Assignment operator oveloading](#12-assignment-operator-overloading)
+- [Comparator operator overloading](#13-comparing-operator-overloading)
+- [Data conversion](#14-data-conversion)
 
 
 
@@ -455,7 +455,7 @@ int main(){
 
 # Object Oriented Programming
 
-## Class
+## Program
 
 ## 01. Class Setup
 This give a insight on the structure of class in c++ programming.Implicitly the class method along with the class attribute are private. If we want to access those then we have to make it explicitly public. The function becomes inline on where called.
@@ -927,147 +927,6 @@ int main(){
 }
 ```
 
-## 10. Student report
-The topics which we have learned in this class series, I have tried to summarize all the terms in a single program. It is just the extended version of section 03, in which all the instruction and concept which we have learned till now has been implemented.
-```cpp
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-class Student
-{
-private:
-    string name, report, rollNo;
-    float marks[5], totalMarks, percentage;
-    string subject[5];
-    static int passMarks;
-
-public:
-    Student(string fname, string roll, float marksArr[5], string sub[5])
-    {
-        this->name = fname;
-        this->rollNo = roll;
-        for (int i = 0; i < 5; ++i)
-        {
-            marks[i] = marksArr[i];
-            subject[i] = sub[i];
-        }
-        totalStudents++;
-
-        calres();
-    }
-
-    ~Student()
-    {
-    }
-
-    void setMarks(float marksArr[5])
-    {
-        for (int i = 0; i < 5; ++i)
-        {
-            marks[i] = marksArr[i];
-        }
-        calres();
-    }
-
-    static int totalStudents;
-
-    static void displayTotalStudents()
-    {
-        cout << "Total students: " << totalStudents << endl;
-    }
-
-    void displayInfo()
-    {
-        cout << "___________________________________________" << endl;
-        cout << "Name: " << name << endl;
-        cout << "Roll No: " << rollNo << endl;
-        for (int i = 0; i < 5; ++i)
-        {
-            cout << "Marks of " << subject[i] << "::" << marks[i] << endl;
-        }
-        cout << "___________________________________________" << endl;
-        cout << "Total Marks: " << totalMarks << endl;
-        cout << "Percentage: " << percentage << "%" << endl;
-        cout << "Result: " << report << endl;
-    }
-
-private:
-    void calres()
-    {
-        report = "Pass";
-        totalMarks = 0;
-        for (int i = 0; i < 5; ++i)
-        {
-            totalMarks += marks[i];
-            if (marks[i] < passMarks)
-            {
-                report = "Fail";
-                break;
-            }
-        }
-        percentage = (static_cast<float>(totalMarks) / 5.0);
-    }
-};
-
-int Student::passMarks = 32;
-int Student::totalStudents = 0;
-
-float marksInput(float *marks, string subject[5])
-{
-
-    for (int i = 0; i < 5; i++)
-    {
-        do
-        {
-            cout << "Marks of " << subject[i] << " ::";
-            cin >> marks[i];
-            if (marks[i] > 100 || marks[i] < 0)
-            {
-                cout << "Invalid Marks" << endl;
-            }
-        } while (marks[i] < 0 || marks[i] > 100);
-    }
-}
-
-int main()
-{
-
-    float marks[5];
-    string subject[] = {"a", "b", "c", "d", "e"}, name, rollno;
-    char setMore, addMore;
-    while (true)
-    {
-        cout << "_______________________Student detail___________________________" << endl;
-        cout << "Name ::";
-        cin >> name;
-        cout << "Roll no ::";
-        cin >> rollno;
-
-        marksInput(marks, subject);
-        Student student(name, rollno, marks, subject);
-
-        cout << "Wanna set the value (y/n)::";
-        cin >> setMore;
-        if (setMore == 'y')
-        {
-            marksInput(marks, subject);
-        }
-        student.setMarks(marks);
-        student.displayInfo();
-        student.displayTotalStudents();
-        cout << "Add more ?? (y/n) ::";
-        cin >> addMore;
-        if (addMore != 'y')
-        {
-            break;
-        }
-    }
-
-    return 0;
-}
-```
 ## 11. More on constructor destructor and this operator
 This program helps to understand how can we use this operator. Similarly this gives an insight on nameless object and also the addition of objects and saving the result in object. i.e. object function call the methods in which object is taken as parameter and the returned result is also an object.
 ```cpp
@@ -1131,7 +990,7 @@ int main()
 }
 ```
 
-## 12. Operator Overloading
+## 11. Operator Overloading
 Operator ovearloading is a way to redefine the built in fucntion to do specific task assigned by user.
 
 #### General syntax:
@@ -1284,7 +1143,7 @@ int main()
 }
 ```
 
-## 13. Assignment operator overloading
+## 12. Assignment operator overloading
 The following programs gives you an insight on concatinating and copying the member of object dynamically.
 
 ### Concatinating
@@ -1397,7 +1256,7 @@ int main()
 }
 ```
 
-## 14. Comparing operator overloading
+## 13. Comparing operator overloading
 Overloading the comparetor operator for the determination of greater complex number.
 ```cpp
 #include <iostream>
@@ -1448,7 +1307,7 @@ int main()
 }
 ```
 
-## 15. Data conversion
+## 14. Data conversion
 This code demonstrates how to define a class in C++ with a constructor and a conversion operator, and how to use these features to convert between different units of temperature.
 ```cpp
 #include <iostream>
