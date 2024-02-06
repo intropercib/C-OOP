@@ -1,8 +1,3 @@
-// create a class named temp that store temp in degree celsius. now create mechanism to convert basic data type degree fahrenheit into iser def data type temperature and vice versa
-//  temperature{
-//     celsius
-// }
-
 #include <iostream>
 #include <cmath>
 using namespace std;
