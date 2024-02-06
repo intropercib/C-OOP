@@ -459,6 +459,7 @@ Object-Oriented Programming (OOP) is a programming paradigm that revolves around
 ### 01. Class
 A class is a blueprint for creating objects in object-oriented programming. It defines the properties (attributes) and behaviors (methods) that objects of the class will have. For example, a 'Car' class may have attributes like 'color' and 'model' and methods like 'start' and 'stop'.
 
+
 ### 02. Object
 An object is an instance of a class. It represents a real-world entity and encapsulates data and functionality. For instance, an object of the 'Car' class could be a specific car with a particular color and model, capable of starting and stopping.
 
