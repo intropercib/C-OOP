@@ -36,8 +36,7 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 - [Assignment operator oveloading](#12-assignment-operator-overloading)
 - [Comparator operator overloading](#13-comparing-operator-overloading)
 - [Data conversion](#14-data-conversion)
-
-
+- [Inheritance](#15-inheritance)
 
 # Introduction
 
@@ -1449,5 +1448,65 @@ int main()
 	float celsius=tempf;
 	cout<<"The value of Temp in celsius is " << celsius<<endl;
 	return 0;
+}
+```
+## 15. Inheritance
+
+#### 1. What is inheritance?
+Inheritance is the process by which one class (the derived class) acquires the properties and methods of another class (the base class). The derived class inherits all the properties of the base class, without changing the properties of the base class and may add new features to its own.
+
+#### 2. Necessity
+Inheritance is used to avoid duplication of data and increase re-usability. For example, consider a group of vehicles. You need to create classes for Bus, Car, and Truck. The methods fuelAmount(), capacity(), applyBrakes() will be the same for all three classes. If we create these classes avoiding inheritance then we have to write all of these functions in each of the three classes.
+
+#### 3. Types
+Inheritance in C++ is a feature that allows a class (the derived class) to acquire the properties and methods of another class (the base class). There are five main types of inheritance in C++.
+
+##### i. Single Inheritance
+    A derived class is created from one base class. It’s the simplest form of inheritance.
+
+##### ii. Multiple Inheritance
+    A derived class is created from more than one base class. The derived class inherits all the properties of all base classes.
+##### iii. Multilevel Inheritance
+    This involves multiple levels of inheritance, where a derived class acts as a base class for other classes.
+##### iv. Hierarchical Inheritance 
+    One base class serves as the foundation for multiple derived classes.
+##### v. Hybrid Inheritance
+    This is a combination of multiple and multilevel inheritance.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class base1{
+    public :
+    void show(){
+        cout << "BASE1" << endl;
+    }
+};
+class base2{
+    public :
+    void show(){
+        cout << "BASE2" << endl;
+    }
+};
+class base3{
+    public :
+    void show(){
+        cout << "BASE3" << endl;
+    }
+};
+class der : public base1, public base2, public base3{
+    public:
+    void show(){
+        base1::show();
+        base2::show();
+        base3::show();
+        cout << "DER" << endl;
+    }
+};
+int main(){
+    der d;
+    d.show();
+    return 0;
 }
 ```
