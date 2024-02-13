@@ -41,7 +41,7 @@ public:
         show();
         cout << school << endl;
     }
-};
+};w
 
 int main()
 {

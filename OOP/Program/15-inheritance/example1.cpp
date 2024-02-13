@@ -1,9 +1,3 @@
-// ambiguity in multiple inheritance
-
-// if a class is derived from a multiple base classes each of them having at least one function of same name, when a derived class object is used to call that particular function then compiler flag will be ambuity error
-// since compiler wont have any idea which particular base class function to call this is known as ambuity inheritance 
-// this can be resolved with the base class resolution class operator
-
 #include <iostream>
 
 using namespace std;
