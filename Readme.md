@@ -37,6 +37,10 @@ Welcome to the "Learn C++ Programming" repository! This repository is designed t
 - [Comparator operator overloading](#13-comparing-operator-overloading)
 - [Data conversion](#14-data-conversion)
 - [Inheritance](#15-inheritance)
+- [Virtual Function and Abstrace Class](#16-virtual-function-and-abstract-class)
+- [Reinterpret Casting](#17-reinterpret-casting)
+- [Pointer Object in Inheritace](#18-pointer-object-in-inheritance)
+- [Error Handling](#19-error-handling)
 
 # Introduction
 
@@ -1510,3 +1514,153 @@ int main(){
     return 0;
 }
 ```
+## 16. Virtual Function and Abstract Class
+The keyword virtual is used to declare a function that can be overridden by derived classes. A virtual function is a function that can have different behaviors depending on the type of the object that calls it. This is called polymorphism, which is an important feature of object-oriented programming. A virtual function is declared with the virtual keyword in the base class, and can be redefined in the derived class with the same signature.
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class shape{  //Abstract Class
+	public:
+		void virtual draw()=0;
+		/* Pure Virtual Function -> Obj is not created from base virtual class*/
+};
+
+class circle:public shape{
+	public:
+		void draw(){
+			cout << "CIRCLE" << endl;
+		}
+};
+
+class rectangle:public shape{
+	public:
+		void draw(){
+			cout << "RECTANGLE" << endl;
+		}
+};
+
+class triangle: public shape{
+	public:
+		void draw(){
+			cout << "TRIANGLE" << endl;
+		}
+};
+
+int main(){
+	
+//	shape *s = new shape();  // error obj cant't be created from base since virtual function
+//	s->draw();
+	
+	shape *s = new circle();
+	s -> draw();
+	
+	s = new rectangle();
+	s -> draw();
+	
+	s = new triangle();
+	s -> draw();
+	
+	return 0;
+}
+```
+
+## 17. Reinterpret Casting
+In C++, reinterpret_cast is a type of casting operator used to convert one pointer type to another pointer type, or to convert one data type to another, regardless of their relatedness. It's a powerful but potentially dangerous type of casting because it performs a low-level reinterpretation of the bit pattern of the value being casted. 
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	
+	int x = 65;
+	cout << x << endl;
+	char *c = reinterpret_cast<char*>(&x);
+	cout << *c << endl;
+	
+	return 0;
+}
+```
+
+## 18. Pointer Object in Inheritance
+In C++, pointer objects in inheritance allow pointers to both base and derived classes to access the members of their respective classes. When a pointer of the base class type points to a derived class object, it can access both base and derived class members, while a pointer of the derived class type can only access the members of the base class when pointing to a base class object. This distinction is fundamental for polymorphism and dynamic dispatch, ensuring code flexibility and efficient memory management.
+```cpp
+#include<iostream>
+
+using namespace std;
+
+class base{   //base class
+	public:
+		void show(){
+			cout << "base class" << endl;
+		}
+};
+
+class der: public base{  //derived class
+	public:
+		void show(){
+			cout << "derived class" << endl;
+		}
+};
+
+int main(){
+//	use of pointer object in inheritance
+	base *b = new base();
+	b->show();  //content of b
+	
+	der *d = new der();
+	d->show(); //content of d
+	
+	/* der *d = new base();   //error can't be access from der to base
+	d->show();  */
+	
+	base *b1 = new der();
+	b1->show(); //can be access from base to der 
+}
+```
+## 19. Error Handling
+In C++, error handling involves managing exceptions gracefully using try, catch, and throw blocks. These mechanisms help detect, handle, and propagate exceptions, ensuring program stability and reliability. Exception handling separates error-handling code from normal code flow, promoting cleaner and more maintainable code, and enhances code robustness by providing a structured way to handle unexpected situations without terminating the program abruptly.
+#### Genral Syntax:
+```cpp
+    try {
+        // Code that may throw an exception
+        // It could be a function call or a block of code
+        // If an exception occurs, control jumps to the nearest catch block
+    }
+    catch (ExceptionType1 ex1) {
+        // Handle exception of type ExceptionType1
+    }   
+```
+
+#### Program
+```cpp
+
+#include <iostream>
+using namespace std;
+int divide(int a, int b){
+    if(b== 0){
+        throw b;
+    }
+    else{
+        return a/b;
+    }
+}
+int main(){
+    int a, b;
+    char x[12];
+    cout << "Numbers" << endl;
+    try{
+        cin >> a >> b;
+        int z = divide(a, b);
+        cout << "Result :: " << z << endl;
+    }
+    catch (int b){
+        cout << "cant be divided by zero"<< endl;
+    }
+    return 0;
+}
+```
+
+
