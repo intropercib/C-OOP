@@ -42,12 +42,12 @@ public:
     {
         if (name.length() < 4)
         {
-            throw name_error("Name should be greater than 4 char");
+            throw name_error("Name should be greater than 4 char.");
         }
 
-        if (age <= 16 || age >= 36)
+        if (age < 16 || age > 36)
         {
-            throw age_error("Age is invalid. Age must be between 16 and 36");
+            throw age_error("Age is invalid. Age must be between 16 and 36.");
         }
 
         this->name = name;
