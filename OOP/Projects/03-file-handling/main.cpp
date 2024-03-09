@@ -28,17 +28,19 @@ public:
     }
     void setdata()
     {
-        cout << "Enter name:: " << endl;
+        cout << "Enter name:: ";
         getline(cin, name);
-        cout << "Enter age:: " << endl;
+        cout << "Enter age:: ";
         cin >> age;
-        cout << "Enter id:: " << endl;
+        cout << "Enter id:: ";
         cin >> id;
+
+        cin.ignore();
     }
 
     void putdata()
     {
-        cout << "Name :: " << name << "Age:: " << age << "Id:: " << id << endl;
+        cout << "Name :: " << name << "\tAge:: " << age << "\tId:: " << id << endl;
         cout << "________________________________________________" << endl;
     }
     void addrecord();
