@@ -1,0 +1,1 @@
+i am writting this text which will be stored in student.txt
